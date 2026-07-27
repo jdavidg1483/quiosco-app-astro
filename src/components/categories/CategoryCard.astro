@@ -1,0 +1,23 @@
+---
+import { Picture } from 'astro:assets'
+import type { Category } from '@/types'
+
+interface Props {
+    category: Category
+}
+const { category } = Astro.props
+const currentCategory = () => category.slug === Astro.params.category
+---
+
+<div class={` ${currentCategory() && 'bg-amber-400'} flex items-center gap-4 p-3 border-t border-gray-200 last-of-type:border-b`}>
+
+    <Picture 
+       src={category.acf.icon}
+       alt={`Imagen de Categoria ${category.name}`}
+       width={300}
+       height={300}
+       class={'w-20 h-20'}
+    />
+
+    <a href={`/order/${category.slug}`} class="text-xl font-bold" >{category.name}</a>
+</div>
