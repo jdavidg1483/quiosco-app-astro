@@ -1,0 +1,16 @@
+---
+import ProductCard from '@/components/products/ProductCard.astro'
+import { ProductsSchema } from '@/types'
+const {category } =  Astro.params
+const url = `${import.meta.env.PUBLIC_API_URL}/freshcoffee_products?freshcoffee_category_slug=${category}&per_page=20`
+const res = await fetch(url)
+const json =await res.json()
+const products = ProductsSchema.parse(json)
+
+---
+
+<div></div>
+
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-5 items-stretch">
+    {products.map(product => <ProductCard product={product} />)}
+</div>

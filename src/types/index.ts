@@ -14,3 +14,15 @@ import { z } from 'astro:content'
 
 export const CategoriesSchema = z.array(CategorySchema)
 export type Category = z.infer<typeof CategorySchema>
+
+const ProductSchema = z.object({
+    id: z.number(),
+    slug: z.string(),
+    title: z.object({
+        rendered: z.string()
+    }),
+    featured_media: z.number()
+})
+
+export const ProductsSchema = z.array(ProductSchema)
+export type Product = z.infer<typeof ProductSchema>
