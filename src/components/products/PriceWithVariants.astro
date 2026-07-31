@@ -1,0 +1,10 @@
+---
+import type { Product, ProductWithVariablePrice } from "@/types";
+interface Props {
+    product: ProductWithVariablePrice
+}
+
+const {product} = Astro.props
+---
+
+<h1>Desde Price Variants</h1>
