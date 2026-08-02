@@ -70,3 +70,12 @@ const ProductWithVariableSchema = ProductSchema.extend({
 })
 
 export type ProductWithVariablePrice = z.infer<typeof ProductWithVariableSchema>
+
+const SelectedProductSchema = z.object({
+    id: z.number(),
+    name: z.string(),
+    price: z.number(),
+    size: z.optional(z.string())
+})
+
+export type SelectedProduct = z.infer<typeof SelectedProductSchema>

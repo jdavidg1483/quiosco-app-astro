@@ -4,3 +4,7 @@ export function formatCurrency(amount: number) {
         currency: 'USD'
     }).format(amount)
 }
+
+export function toLowerFirstChar(str: string) {
+    return str.charAt(0).toLowerCase()
+}

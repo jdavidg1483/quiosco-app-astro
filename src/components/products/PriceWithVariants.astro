@@ -1,10 +1,37 @@
 ---
-import type { Product, ProductWithVariablePrice } from "@/types";
+import type {  ProductWithVariablePrice } from "@/types";
+import { formatCurrency, toLowerFirstChar } from "@/utils";
+import { toLowerCase } from "astro:schema";
+import AddProductVariantProduct from "../AddProductVariantProduct";
 interface Props {
     product: ProductWithVariablePrice
 }
 
 const {product} = Astro.props
----
+const keys =['small', 'medium', 'large'] as const
+ ---
 
-<h1>Desde Price Variants</h1>
+<div class="mt-5 space-y-5">
+   {keys.map(key => {
+    const variant = product.acf[key]
+
+    return (
+        <dl class="flex justify-between items-center text-lg font-black">
+            <dt class="text-xl uppercase">{toLowerFirstChar(variant.size)}:</dt>
+            <dd class="flex items-center gap-3">
+                <span class="text-3xl text-amber-400">{formatCurrency(variant.price)}</span>
+                <AddProductVariantProduct 
+                      client:only="react"
+                      
+                       product={{
+                         id: product.id,
+                         name: product.title.rendered,
+                         price: variant.price,
+                         size: variant.size
+                       }}
+                />
+            </dd>
+        </dl>
+    )
+   })}
+</div>
