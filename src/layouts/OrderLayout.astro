@@ -1,7 +1,12 @@
 ---
+
 import CategoriesSidebar from "@/components/categories/CategoriesSidebar.astro";
 import Layout from "./Layout.astro";
+import OrderDrawer from "@/components/order/OrderDrawer";
+import ClientRouter from 'astro/components/ClientRouter.astro';
 ---
+
+<ClientRouter />
 
 <Layout title="Quiosco de Pedidos">
     <div class="md:flex">
@@ -10,6 +15,8 @@ import Layout from "./Layout.astro";
              <slot />
 
          </main>
+
+         <OrderDrawer client:only="react"/>
     </div>
   
 </Layout>
