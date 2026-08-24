@@ -1,9 +1,23 @@
 ---
 
-import Layout from '../layouts/Layout.astro';
+import AuthLayout from "@/layouts/AuthLayout.astro";
 
 ---
 
-<Layout title="Incio">
-	<h1>incio</h1>
-</Layout>
+<AuthLayout title="Haz tu Pedidio" >
+<button id="guest-login" class="border border-amber-400 hover:bg-amber-400 px-5 py-3 cursor-pointer rounded-lg mx-aout text-2xl uppercase font">
+	Crea tu orden
+</button>
+
+</AuthLayout>
+
+<script>
+	import { actions } from 'astro:actions'
+	const guestloginBtn = document.querySelector('#guest-login')
+	if(guestloginBtn) {
+       guestloginBtn.addEventListener('click', async function(e) {
+		await actions.auth.signInAsGuest()
+	   })
+	}
+</script>
+

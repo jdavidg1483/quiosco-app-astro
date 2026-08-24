@@ -1,0 +1,38 @@
+---
+import { Picture } from "astro:assets"
+import Layout from "./Layout.astro";
+import authImg from '@/assets/auth.jpg'
+import Logo from '@/assets/logo.svg'
+
+interface Props {
+    title: string
+}
+
+const {title} = Astro.props
+---
+
+<Layout title={title}>
+   <div class="flex min-h-full">
+     <div class="flex flex-1 px-4 sm:px-6 lg:px-20 xl:px-24 py-12 lg:flex-none">
+        <div class="mx-auto w-full lg:w-96 space-y-5 lg:py-20 flex flex-col items-center">
+            <Logo class="w-48" />
+
+            <h2 class="mt-5 text-4xl font-black text-center text-gray-900 tracking-tight">{title}</h2>
+            <slot />
+
+        </div>
+     </div>
+
+     <div class="relative hidden flex-1 lg:block">
+       <Picture 
+       src={authImg}
+       alt={'Imagen de inicio'}
+       width={1200}
+       height={800}
+       class="absolute size-full inset-0 object-cover"
+       formats={["avif", "webp"]}
+       />
+       
+     </div>
+   </div>
+</Layout>
