@@ -1,6 +1,7 @@
 import { useOrderStore } from "@/stores/order"
 import ProductDatails from "./ProductDatails"
 import { calculateTotal, formatCurrency } from "@/utils"
+import SubmitOrderForm from "./SubmitOrderForm"
 
 
 export default function OrderContents() {
@@ -29,6 +30,8 @@ export default function OrderContents() {
       <h2 className="mt-5 text-2xl font-bold text-right">
             Total a pagar: {formatCurrency(total)}
       </h2>
+
+      <SubmitOrderForm />
       </>
    }
      

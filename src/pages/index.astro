@@ -13,10 +13,14 @@ import AuthLayout from "@/layouts/AuthLayout.astro";
 
 <script>
 	import { actions } from 'astro:actions'
+	import { navigate } from 'astro:transitions/client'
 	const guestloginBtn = document.querySelector('#guest-login')
 	if(guestloginBtn) {
        guestloginBtn.addEventListener('click', async function(e) {
-		await actions.auth.signInAsGuest()
+		const {data, error} = await actions.auth.signInAsGuest()
+	      if(data && !error) {
+			navigate('/order/coffee')
+		  }
 	   })
 	}
 </script>

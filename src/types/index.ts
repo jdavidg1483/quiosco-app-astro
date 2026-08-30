@@ -74,17 +74,17 @@ export type ProductWithVariablePrice = z.infer<typeof ProductWithVariableSchema>
 /** Order - Client */
 const SelectedProductSchema = z.object({
     id: z.number(),
-    name: z.string(),
-    price: z.number(),
-    size: z.optional(z.string())
+    name: z.string().min(1, {message: 'El nombre es obligatorio'}),
+    price: z.number().min(1, {message: 'Precio no Valido'}),
+    size: z.optional(z.string().min(1, {message: 'Medida no valida'}))
 })
 
 export type SelectedProduct = z.infer<typeof SelectedProductSchema>
 
-const OrderItemSchema = SelectedProductSchema.extend({
-    quantity: z.number(),
-    subtotal: z.number(),
-    key: z.optional(z.string())
+ export const OrderItemSchema = SelectedProductSchema.extend({
+    quantity: z.number().min(1, {message: 'Cantidad no Valida'}),
+    subtotal: z.number().min(1, {message: 'Cantidad no Valida'}),
+    key: z.optional(z.string().min(1, {message: 'Cantidad no Valida'}))
 })
 
 export type OrderItem = z.infer<typeof OrderItemSchema>
