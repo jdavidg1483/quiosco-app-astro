@@ -26,3 +26,7 @@ export function formatOrder(order: OrderItem[]): string {
 
   return `<ul>${listItems}</ul>`
 }
+
+export function nullToEmptyString(arg: unknown) {
+  return arg ?? ''
+}

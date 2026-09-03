@@ -1,0 +1,48 @@
+---
+import AuthLayout from "@/layouts/AuthLayout.astro"
+import { actions } from "astro:actions";
+---
+<AuthLayout title="Iniciar Sesión">
+  <form
+  action={actions.auth.sigIn}
+    method="POST"
+    class="space-y-6 mt-5 w-full"
+    novalidate
+  >
+    <div>
+      <label for="username" class="block text-sm/6 font-medium text-gray-900"
+        >Usuario:</label
+      >
+      <div class="mt-2">
+        <input
+          type="text"
+          name="username"
+          id="username"
+          class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-amber-600 sm:text-sm/6"
+        />
+      </div>
+    </div>
+
+    <div>
+      <label for="password" class="block text-sm/6 font-medium text-gray-900"
+        >Password</label
+      >
+      <div class="mt-2">
+        <input
+          type="password"
+          name="password"
+          id="password"
+          class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-amber-600 sm:text-sm/6"
+        />
+      </div>
+    </div>
+
+    <div>
+      <button
+        type="submit"
+        class="flex w-full justify-center rounded-md bg-black px-3 p-2 font-bold text-lg text-white shadow-xs focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-600 cursor-pointer"
+        >Iniciar Sesión</button
+      >
+    </div>
+  </form>
+</AuthLayout>
