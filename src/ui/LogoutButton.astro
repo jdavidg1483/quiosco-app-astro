@@ -2,3 +2,15 @@
      class=" bg-red-500 hover:bg-red-600 text-lg text-white w-full mt-5 p-3 uppercase font-bold cursor-pointer rounded-xl"
      id="logout-button"
 >Cerrar Sesión</button>
+
+<script>
+     import { actions } from "astro:actions"
+     import { navigate } from 'astro:transitions/client'
+     const logoutBtn = document.querySelector('#logout-button')
+     if(logoutBtn) {
+          logoutBtn.addEventListener('click', () => {
+               actions.auth.signOut()
+               navigate('auth/login')
+          })
+     }
+</script>

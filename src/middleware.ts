@@ -19,6 +19,10 @@ export const onRequest = defineMiddleware( async (cxt, next) => {
 
    const { role } = user
 
+   if(role === 'administrator') {
+    return next()
+   }
+
    if(role === 'freshcoffee_customer') {
 
 

@@ -1,8 +1,19 @@
 ---
-import AuthLayout from "@/layouts/AuthLayout.astro"
 import { actions } from "astro:actions";
+import AuthLayout from "@/layouts/AuthLayout.astro"
+import  { isInputError } from "astro:actions";
+import ErrorMessage from '@/ui/ErrorMessage.astro'
+import { isActionError } from "astro:actions";
+const result = Astro.getActionResult(actions.auth.sigIn)
+const  inputErrors = isInputError(result?.error) ? result.error.fields : {}
+const actionError =  isActionError(result?.error) ? result.error.message : null 
+
+if(result?.data && !result.error) {
+  return Astro.redirect('/admin')
+}
 ---
 <AuthLayout title="Iniciar Sesión">
+  {actionError && <ErrorMessage>{actionError}</ErrorMessage>}
   <form
   action={actions.auth.sigIn}
     method="POST"
@@ -21,6 +32,9 @@ import { actions } from "astro:actions";
           class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-amber-600 sm:text-sm/6"
         />
       </div>
+      {inputErrors.username && (
+        <ErrorMessage>{inputErrors.username}</ErrorMessage>
+      )}
     </div>
 
     <div>
@@ -35,6 +49,11 @@ import { actions } from "astro:actions";
           class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-amber-600 sm:text-sm/6"
         />
       </div>
+      
+      {inputErrors.username && (
+        <ErrorMessage>{inputErrors.password}</ErrorMessage>
+      )}
+
     </div>
 
     <div>

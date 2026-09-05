@@ -59,8 +59,43 @@ export const auth = {
       )
     }),
    handler: async (Input, ctx) =>{
-    console.log(Input)
+    const res = await fetch(import.meta.env.PUBLIC_AUTH_URL, {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json'
+      },
+      body: JSON.stringify(Input)
+    })
+    const data = await res.json()
+
+    if(data.code === '[jwt_auth] invalid_username') {
+      throw new ActionError({
+        message: 'El Usuario no existe',
+        code: 'UNAUTHORIZED'
+      })
+    }
+
+       if(data.code === '[jwt_auth] incorrect_password') {
+      throw new ActionError({
+        message: 'Password Incorrecto',
+        code: 'UNAUTHORIZED'
+      })
+    }
    
+   
+    
+
+
+    ctx.cookies.set('FRESHCOFFEE_TOKEN', data.token, {
+        httpOnly: true,
+        sameSite: "strict",
+        path: "/",
+        maxAge: 60 * 60 * 24 * 2, // 2 días
+      
+    })
+   
+    return true
+
    }
   }),
 
