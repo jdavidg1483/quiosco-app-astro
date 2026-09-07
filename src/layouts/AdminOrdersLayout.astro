@@ -1,0 +1,17 @@
+---
+import OrderStatusNav from  "@/components/admin/OrderStatusNav.astro";
+import AdminLayout from "./AdminLayout.astro";
+interface Props {
+  title: string
+}
+const { title } = Astro.props
+---
+<AdminLayout
+  title={title}
+>
+  <h2 class="text-xl mb-5">Filtrar Ordenes:</h2>
+  <OrderStatusNav />
+  <div class="mt-10">
+    <slot />
+  </div>
+</AdminLayout>

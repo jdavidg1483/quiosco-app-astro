@@ -1,0 +1,13 @@
+---
+import { currentPage } from "@/utils";
+import { orderStatusOptions } from '@/utils/constants'
+const current = Astro.url.pathname
+---
+<nav class="flex gap-5">
+  {orderStatusOptions.map( status => (
+    <a 
+      href={`/admin/orders/${status.value}`} 
+       class={`${currentPage(`/admin/orders/${status.value}`, current) ? 'bg-indigo-600'  : 'bg-indigo-400' }  hover:bg-indigo-500 transition-colors p-2 text-white rounded`}
+    >{status.label}</a>
+  ))}
+</nav>

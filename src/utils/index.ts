@@ -30,3 +30,6 @@ export function formatOrder(order: OrderItem[]): string {
 export function nullToEmptyString(arg: unknown) {
   return arg ?? ''
 }
+
+export const currentPage = (href: string, category: string) => href === category
+

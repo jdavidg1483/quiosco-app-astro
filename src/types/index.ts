@@ -88,3 +88,14 @@ export type SelectedProduct = z.infer<typeof SelectedProductSchema>
 })
 
 export type OrderItem = z.infer<typeof OrderItemSchema>
+
+export const OrderContentSchema = z.object({
+    id: z.number(),
+    title: z.string(),
+    contents: z.string(),
+    status: z.string(),
+    total: z.number(),
+    name: z.string()
+})
+
+export type OrderContent = z.infer<typeof OrderContentSchema>

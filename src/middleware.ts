@@ -4,9 +4,10 @@ import { verifySession } from "./auth/dal";
 export const onRequest = defineMiddleware( async (cxt, next) => {
     const { pathname } = cxt.url
     const isAdminRoute = pathname.startsWith('/admin')
-    const isOrderRoute = pathname.startsWith('/admin')
+    const isOrderRoute = pathname.startsWith('/order')
+    const isOrderActionRoute = pathname.startsWith('/_actions/orders')
   
-    const isProtected = isAdminRoute || isOrderRoute
+    const isProtected = isAdminRoute || isOrderRoute || isOrderActionRoute
 
     if(!isProtected) return next();
 
@@ -16,6 +17,7 @@ export const onRequest = defineMiddleware( async (cxt, next) => {
     return Response.redirect(new URL('/', cxt.url), 302)
    }
 
+  cxt.locals.user = user
 
    const { role } = user
 
