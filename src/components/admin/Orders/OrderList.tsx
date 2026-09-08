@@ -20,7 +20,7 @@ export default function OrderOrderListist({status}: Props) {
     ) :(
        <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
            {data.map(order => (
-            <OrderCard key={order.id} order={order} />
+            <OrderCard key={order.id} order={order} mutate={mutate}/>
            ))}
        </div>
     )

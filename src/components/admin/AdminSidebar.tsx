@@ -4,7 +4,7 @@ import {
 } from "@heroicons/react/24/outline";
 
 const navigation = [
-  { name: "Ordenes", href: "/admin/orders/pending", icon: NewspaperIcon, bgColor: 'bg-teal-400' },
+  { name: "Ordenes", href: "/admin/orders/", icon: NewspaperIcon, bgColor: 'bg-teal-400' },
   { name: "Productos", href: "/admin/products", icon: DocumentDuplicateIcon, bgColor: 'bg-indigo-400' }
 ];
 

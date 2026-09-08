@@ -82,7 +82,7 @@ export const orders = {
 
            // 3. Enviar actualización a la API REST
            const res = await fetch(`${import.meta.env.PUBLIC_API_URL}/freshcoffee_order/${input.id}`, {
-               method: 'POST', // WordPress REST API acepta POST o PUT para actualizaciones de CPT
+               method: 'PUT', // WordPress REST API acepta POST o PUT para actualizaciones de CPT
                headers: {
                    'Authorization': `Bearer ${token}`,
                    'Content-Type': 'application/json'
