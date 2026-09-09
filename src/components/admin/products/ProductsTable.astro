@@ -1,0 +1,33 @@
+---
+import type { Product } from '@/types'
+interface Props {
+  products: Product[]
+}
+const { products } = Astro.props
+---
+ <tbody class="divide-y divide-gray-200">
+    {
+      products.map((product) => (
+        <tr>
+          <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+
+          </td>
+          <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+            {product.title.rendered}
+          </td>
+
+          <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+            <a
+              class="bg-indigo-400 p-1 text-white rounded"
+              href={''}
+            >
+
+            </a>
+          </td>
+          <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
+
+          </td>
+        </tr>
+      ))
+    }
+  </tbody>

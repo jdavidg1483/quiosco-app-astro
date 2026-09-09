@@ -1,6 +1,7 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import Logo from '@/assets/logo.svg'
+import PickUpDisplay from '@/components/order/PickUpDisplay'
 const title = 'Órdenes para Retirar';
 ---
 
@@ -9,6 +10,10 @@ const title = 'Órdenes para Retirar';
     <div class="max-w-4xl mx-auto p-20 shadow bg-white rounded-2xl space-y-10 flex flex-col items-center">
       <h1 class="text-4xl font-black">{title}</h1>
       <Logo />
+
+      <PickUpDisplay
+         client:only="react"
+      />
     </div>
   </main>
 </Layout>

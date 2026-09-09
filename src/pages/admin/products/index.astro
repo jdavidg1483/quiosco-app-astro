@@ -1,0 +1,17 @@
+---
+import ProductsTable from "@/components/admin/products/ProductsTable.astro"
+import AdminProductsLayout from "@/layouts/AdminProductsLayout.astro";
+import { ProductsSchema } from "@/types";
+
+const res = await fetch(`${import.meta.env.PUBLIC_API_URL}/freshcoffee_products`)
+const data = await res.json()
+const products = ProductsSchema.parse(data)
+console.log(products)
+
+
+---
+
+
+<AdminProductsLayout title: "Administrar Productos">
+     <ProductsTable products={products} />
+</AdminProductsLayout>
