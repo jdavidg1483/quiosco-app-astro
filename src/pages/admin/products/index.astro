@@ -3,15 +3,30 @@ import ProductsTable from "@/components/admin/products/ProductsTable.astro"
 import AdminProductsLayout from "@/layouts/AdminProductsLayout.astro";
 import { ProductsSchema } from "@/types";
 
-const res = await fetch(`${import.meta.env.PUBLIC_API_URL}/freshcoffee_products`)
+const PRODUCTS_PER_PAGE =10
+const PAGE = Astro.url.searchParams.get('page') ?? "1"
+
+
+const res = await fetch(`${import.meta.env.PUBLIC_API_URL}/freshcoffee_products?per_page=${PRODUCTS_PER_PAGE}&page=${PAGE}`)
+
+if(!res.ok) return Astro.redirect('/admin/products?page=1')
+
 const data = await res.json()
+
 const products = ProductsSchema.parse(data)
-console.log(products)
+
+const totalPages = res.headers.get('X-WP-TotalPages')!
+console.log(totalPages)
 
 
 ---
 
 
-<AdminProductsLayout title: "Administrar Productos">
+<AdminProductsLayout
+    title: "Administrar Productos" 
+    page={+PAGE} 
+    totalPages={+totalPages}
+    >
+
      <ProductsTable products={products} />
 </AdminProductsLayout>

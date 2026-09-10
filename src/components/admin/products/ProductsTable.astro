@@ -1,5 +1,9 @@
 ---
+import { Picture } from 'astro:assets'
+import ProductMenu from './ProductMenu'
 import type { Product } from '@/types'
+import ProductsGrid from '@/components/products/ProductsGrid.astro'
+
 interface Props {
   products: Product[]
 }
@@ -10,7 +14,15 @@ const { products } = Astro.props
       products.map((product) => (
         <tr>
           <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-
+             <Picture 
+               src={product.featured_images.medium.url}
+               alt={`Imagen del Producto ${product.title.rendered}`}
+               width={product.featured_images.medium.width}
+               height={product.featured_images.medium.height}
+               formats={['avif', 'webp']}
+               class="size-28 object-cover rounded-lg"
+             
+             />
           </td>
           <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
             {product.title.rendered}
@@ -19,13 +31,17 @@ const { products } = Astro.props
           <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
             <a
               class="bg-indigo-400 p-1 text-white rounded"
-              href={''}
+              href={`/admin/products/${product.freshcoffee_category.slug}`}
             >
-
+              {product.freshcoffee_category.name}
             </a>
           </td>
           <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
-
+              <ProductMenu
+                client:only="react"
+                name={product.title.rendered}
+                id={product.id}
+              />
           </td>
         </tr>
       ))

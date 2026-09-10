@@ -1,0 +1,50 @@
+---
+import { currentPage } from '@/utils'
+
+interface Props {
+    page: number
+    totalPages: number
+}
+
+const {page, totalPages} = Astro.props
+
+const pages =Array.from({length: totalPages}, (_, i ) => i + 1)
+
+const { pathname } = Astro.url
+
+---
+
+<nav class="flex justify-center py-10 bg-white mt-20">
+
+        {page > 1  && (
+    
+         <a 
+        href={`${pathname}?page=${page - 1}`}
+        class={` px-4 py-2 text-sm text-gray-900 ring-1 ring-inset ring-gray-300 focus:z-20 focus:outline-offset-0`}
+        >
+        &laquo;
+        </a>
+)}
+
+    {pages.map(currentPage => (
+
+
+        <a 
+        href={`${pathname}?page=${currentPage}`}
+        class={`${page === currentPage && 'font-black'} px-4 py-2 text-sm text-gray-900 ring-1 ring-inset ring-gray-300 focus:z-20 focus:outline-offset-0`}
+        >
+        {currentPage}
+        </a>
+
+    ))}
+{page < totalPages && (
+    
+         <a 
+        href={`${pathname}?page=${page + 1}`}
+        class={` px-4 py-2 text-sm text-gray-900 ring-1 ring-inset ring-gray-300 focus:z-20 focus:outline-offset-0`}
+        >
+        &raquo;
+        </a>
+)}
+
+</nav>

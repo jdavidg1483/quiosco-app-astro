@@ -59,7 +59,12 @@ const ProductSchema = z.object({
     }),
     featured_media: z.number(),
     featured_images: FeaturedImageSchema,
-    acf: ProductPriceSchema
+    acf: ProductPriceSchema,
+    freshcoffee_category: z.object({
+        id:z.number(),
+        name:z.string(),
+        slug: z.string(),
+    })
 })
 
 export const ProductsSchema = z.array(ProductSchema)

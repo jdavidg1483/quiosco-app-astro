@@ -1,0 +1,47 @@
+---
+// CategoriesList.astro
+import { CategoriesSchema } from "@/types";
+
+const { category: currentCategory } = Astro.params;
+
+let categories = [];
+try {
+  const res = await fetch(`${import.meta.env.PUBLIC_API_URL}/freshcoffee_categories`);
+  if (res.ok) {
+    const json = await res.json();
+    categories = CategoriesSchema.parse(json);
+  }
+} catch (error) {
+  console.error("Error al obtener las categorías:", error);
+}
+---
+
+<h2 class="text-xl font-bold mb-5">Categorías</h2>
+
+<!-- ✅ Se agregan 'flex', 'flex-wrap' y 'gap-3' para separar los botones -->
+<nav class="flex flex-wrap gap-3 mb-10">
+  <a 
+    href="/admin/products"
+    class={`p-2.5 px-4 text-sm font-bold text-white rounded transition-colors ${
+      !currentCategory ? 'bg-indigo-700 shadow-md' : 'bg-indigo-500 hover:bg-indigo-600'
+    }`}
+  >
+    Todas
+  </a>
+
+  {categories.map((cat) => {
+    const isActive = currentCategory === cat.slug;
+    return (
+      <a 
+        href={`/admin/products/${cat.slug}`}
+        class={`p-2.5 px-4 text-sm font-bold text-white rounded transition-colors ${
+          isActive 
+            ? 'bg-indigo-700 shadow-md ring-2 ring-indigo-300' 
+            : 'bg-indigo-500 hover:bg-indigo-600'
+        }`}
+      >
+        {cat.name}
+      </a>
+    );
+  })}
+</nav>
