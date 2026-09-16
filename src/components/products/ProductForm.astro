@@ -1,0 +1,53 @@
+---
+import { VariablePriceCheck } from "../admin/products/VariablePriceCheck.vue";
+import UploadImage from "../admin/UploadImage";
+import CategoryField from "./CategoryField.astro";
+---
+
+<div class="space-y-12">
+  <div
+    class="grid grid-cols-1 md:grid-cols-3 gap-8 border-b border-gray-300 pb-12"
+  >
+    <div>
+      <h2 class="text-base/7 font-semibold text-gray-900">Producto</h2>
+      <p class="mt-1 text-sm/6 text-gray-600">
+        Añade información General del Producto
+      </p>
+    </div>
+
+    <div
+      class="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 md:col-span-2"
+    >
+      <div class="col-span-full">
+        <label for="title" class="block text-sm/6 font-medium text-gray-900">
+          Nombre del Producto
+        </label>
+        <div class="mt-2">
+          <input
+            id="title"
+            name="title"
+            type="text"
+            class="w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+            placeholder="Nombre del Producto"
+          />
+        </div>
+      </div>
+      <UploadImage client:only="react" label="Imagen del Producto" />
+     <CategoryField />
+    </div>
+  </div>
+
+  <div
+    class="grid grid-cols-1 gap-x-8 gap-y-10 border-b border-gray-900/10 pb-12 md:grid-cols-3"
+  >
+    <div>
+      <h2 class="text-base/7 font-semibold text-gray-900">Precios</h2>
+      <p class="mt-1 text-sm/6 text-gray-600">
+        Elige si el Producto tiene un Precio fijo o variable
+      </p>
+    </div>
+    <VariablePriceCheck 
+       client:only="vue"
+    />
+  </div>
+</div>

@@ -28,5 +28,14 @@ console.log(totalPages)
     totalPages={+totalPages}
     >
 
+    <div slot="before-products-table" class="mt-10">
+  <a 
+    href="/admin/products/new"
+    class="bg-amber-400 hover:bg-amber-500 transition-colors px-5 py-2 rounded font-bold"
+    >
+    Nuevo Producto
+  </a>
+
+</div>
      <ProductsTable products={products} />
 </AdminProductsLayout>

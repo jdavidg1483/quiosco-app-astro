@@ -76,6 +76,13 @@ const ProductWithVariableSchema = ProductSchema.extend({
 
 export type ProductWithVariablePrice = z.infer<typeof ProductWithVariableSchema>
 
+export const UploadImageSchema = z.object({
+    id: z.number(),
+    source_url: z.string()
+})
+
+export type UploadImage = z.infer<typeof UploadImageSchema>
+
 /** Order - Client */
 const SelectedProductSchema = z.object({
     id: z.number(),
